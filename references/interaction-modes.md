@@ -44,6 +44,10 @@ motion coherent.
   `t`, `left`, `right`, `radius`, and `visible`. Each frame uses
   `interpolateEyeTrack` at the current media time; adjacent invisible
   keyframes make the eye overlay invisible.
+- **Tracking confidence:** Define the tracker or authored-track confidence
+  threshold explicitly. When confidence falls below it, set `visible: false`
+  and hide the overlay until a later keyframe restores a trustworthy anchor;
+  never let pupils drift across the subject during uncertain tracking.
 - **Pointer leave:** Clear the pointer target and ease both pupils back to
   `[0, 0]` rather than leaving them at their last edge position.
 - **Visibility reset:** On `visibilitychange` to hidden, clear transient

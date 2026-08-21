@@ -1,0 +1,4 @@
+interface:
+  display_name: "Immersive Video Websites"
+  short_description: "Build image-to-video immersive brand websites"
+  default_prompt: "Use $building-immersive-video-websites to turn my images or videos into an immersive, scroll-controlled brand website."

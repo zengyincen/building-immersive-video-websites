@@ -1,0 +1,25 @@
+import {expect, test} from '@playwright/test';
+
+test('pointer updates the follower and leaving resets it', async ({page}) => {
+  await page.goto('/');
+  const scene = page.locator('[data-pointer-scene]');
+  await scene.hover({position: {x: 700, y: 250}});
+  await page.waitForTimeout(100);
+  await expect(page.locator('[data-pointer-follower]')).toHaveAttribute('data-active', 'true');
+  await page.locator('footer').hover();
+  await expect(page.locator('[data-pointer-follower]')).toHaveAttribute('data-active', 'false');
+});
+
+test('reduced motion exposes a static experience', async ({browser}) => {
+  const context = await browser.newContext({reducedMotion: 'reduce'});
+  const page = await context.newPage();
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveAttribute('data-motion', 'reduced');
+  await context.close();
+});
+
+test('an empty media manifest keeps the hero in its designed static fallback', async ({page}) => {
+  await page.goto('/');
+  await expect(page.getByRole('status')).toContainText('No media has been assigned yet');
+  await expect(page.locator('[data-media-stage] video')).toHaveCount(0);
+});

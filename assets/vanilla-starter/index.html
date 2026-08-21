@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-motion="full">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A responsive, motion-aware immersive media starter.">
+    <title>Arclight — Immersive Starter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.mjs"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Arclight home">ARCLIGHT</a>
+      <a class="quiet-link" href="#details">Discover the system <span aria-hidden="true">↘</span></a>
+    </header>
+    <main id="top">
+      <section class="hero" data-pointer-scene aria-labelledby="hero-title">
+        <div class="hero-aura" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">The observant object</p>
+          <h1 id="hero-title">Light, held<br>in motion.</h1>
+          <p class="lede">A durable vanilla foundation for tactile product stories, graceful media, and direct human input.</p>
+          <a class="primary-link" href="#details">Enter the field <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="object-stage" data-media-stage aria-label="Media stage">
+          <div class="orbital-ring ring-one" aria-hidden="true"></div>
+          <div class="orbital-ring ring-two" aria-hidden="true"></div>
+          <div class="object-shell">
+            <div class="object-surface" aria-hidden="true"></div>
+            <div class="object-lens" aria-hidden="true"></div>
+            <div class="object-reflection" aria-hidden="true"></div>
+          </div>
+          <p class="asset-status" role="status">No media has been assigned yet. The designed static poster is ready for your source.</p>
+        </div>
+        <div class="eye-overlay" data-eye-overlay aria-hidden="true">
+          <span class="eye eye-left"><span class="pupil"></span></span>
+          <span class="eye eye-right"><span class="pupil"></span></span>
+        </div>
+        <button class="hotspot" type="button" data-hotspot aria-expanded="false" aria-controls="hotspot-detail">
+          <span class="hotspot-dot" aria-hidden="true"></span><span>Material study</span>
+        </button>
+        <aside class="hotspot-detail" id="hotspot-detail" data-hotspot-detail hidden>
+          <p class="eyebrow">01 / Surface</p>
+          <p>Layered radial gradients establish depth without asking a user to download a scene.</p>
+        </aside>
+        <div class="scroll-cue" aria-hidden="true"><span></span> Scroll to observe</div>
+        <div class="pointer-follower" data-pointer-follower data-active="false" aria-hidden="true"><span>Explore</span></div>
+      </section>
+      <section class="statement" aria-labelledby="statement-title">
+        <p class="eyebrow">A quiet interface</p>
+        <h2 id="statement-title">Motion is a response,<br>not a demand.</h2>
+        <p>Events set intent. One animation frame composes the visual state. The result stays precise on fast displays and calm on the devices that need calm most.</p>
+      </section>
+      <section class="detail-grid" id="details" aria-label="Starter principles">
+        <article><p class="index">01</p><h2>Static first</h2><p>An empty manifest remains a composed poster with an honest asset-status message.</p></article>
+        <article><p class="index">02</p><h2>Input with intent</h2><p>Fine pointers receive a follower and gaze response; touch retains real buttons and focus.</p></article>
+        <article><p class="index">03</p><h2>Upgrade on proof</h2><p>CSS carries the first experience. Video and WebGL arrive only when they add verified value.</p></article>
+      </section>
+    </main>
+    <footer><p>ARCLIGHT / Vanilla immersive starter</p><a href="#top">Back to origin ↑</a></footer>
+  </body>
+</html>

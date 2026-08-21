@@ -1,0 +1,9 @@
+{
+  "name": "building-immersive-video-websites",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:unit": "node --test tests/interaction-core.test.mjs"
+  }
+}

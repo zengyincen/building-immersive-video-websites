@@ -3,16 +3,23 @@ import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-REQUIRED_CORE = {
+REQUIRED = {
     "SKILL.md",
     "agents/openai.yaml",
     "references/platform-routing.md",
+    "references/video-direction.md",
+    "references/interaction-modes.md",
+    "references/visual-system.md",
+    "references/verification.md",
+    "compatibility/builder-prompt.md",
+    "compatibility/project-agents-snippet.md",
+    "compatibility/installation-map.md",
 }
 
 
 class SkillStructureTests(unittest.TestCase):
     def test_required_files_exist(self):
-        missing = sorted(path for path in REQUIRED_CORE if not (ROOT / path).is_file())
+        missing = sorted(path for path in REQUIRED if not (ROOT / path).is_file())
         self.assertEqual([], missing)
 
     def test_frontmatter_is_discoverable(self):
@@ -26,7 +33,7 @@ class SkillStructureTests(unittest.TestCase):
     def test_markdown_links_resolve(self):
         text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
         links = re.findall(r"\[[^\]]+\]\(([^)]+\.md)\)", text)
-        self.assertGreaterEqual(len(links), 1)
+        self.assertGreaterEqual(len(links), 5)
         for link in links:
             self.assertTrue((ROOT / link).is_file(), link)
 

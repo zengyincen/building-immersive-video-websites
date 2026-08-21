@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test:unit": "node --test tests/interaction-core.test.mjs",
-    "test:browser": "playwright test",
+    "test:browser": "env -u FORCE_COLOR -u NO_COLOR playwright test",
     "test": "npm run test:unit && npm run test:browser"
   },
   "devDependencies": {

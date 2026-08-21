@@ -30,6 +30,17 @@ class SkillStructureTests(unittest.TestCase):
         for link in links:
             self.assertTrue((ROOT / link).is_file(), link)
 
+    def test_router_distinguishes_modes_and_touch_fallback(self):
+        text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        for phrase in (
+            "scroll-scrubbed video",
+            "mouse-scrubbed video",
+            "triggered playback",
+            "touch fallback",
+            "responsive and reduced-motion",
+        ):
+            self.assertIn(phrase, text)
+
 
 if __name__ == "__main__":
     unittest.main()

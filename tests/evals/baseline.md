@@ -25,8 +25,8 @@ Before delivery I’d verify:
 | --- | --- | --- |
 | Do not generate a replacement video | Pass | Explicitly declines image-to-video generation. |
 | Inspect the supplied video | Fail | It proposes load/playback checks, but does not explicitly inspect the supplied video before building. |
-| Keep scroll scrub distinct from triggered playback | Pass | Scroll drives the visual timeline while the video is muted/autoplaying; no scroll-scrub video playback is conflated with triggered playback. |
-| **Total** | **2/3** | **Observable gap: no explicit supplied-video inspection.** |
+| Keep scroll scrub distinct from triggered playback | Fail | It describes a scroll-driven visual timeline and autoplaying video, but does not define both playback modes or their separation. |
+| **Total** | **1/3** | **Observable gaps: no explicit supplied-video inspection; no defined separation of scroll scrub and triggered playback.** |
 
 ## B. Static image with discovered native capability
 
@@ -77,10 +77,10 @@ Verification would include testing pointer tracking at all four corners, pointer
 | --- | --- | --- |
 | Use time-based normalized eye anchors or tracking data | Pass | Specifies timestamp-keyed anchors with interpolation or motion-tracking data. |
 | Hide overlays when confidence is insufficient | Fail | Hides/pauses only until metadata and dimensions are known; it gives no confidence threshold or low-confidence behavior. |
-| Use a single rAF loop | Pass | Explicitly drives updates through `requestAnimationFrame`. |
+| Use a single rAF loop | Fail | It uses `requestAnimationFrame`, but does not establish a sole loop or target-only raw event handlers. |
 | Provide non-hover fallbacks | Pass | Defines touch-device and reduced-motion alternatives. |
-| **Total** | **3/4** | **Observable gap: no insufficient-confidence overlay behavior.** |
+| **Total** | **2/4** | **Observable gaps: no insufficient-confidence overlay behavior; no sole rAF-loop architecture.** |
 
 ## Baseline result
 
-All three scenarios expose at least one stated-invariant gap. The future skill should explicitly address supplied-video inspection, bounded generation retries, and confidence-gated moving-subject overlays.
+All three scenarios expose at least one stated-invariant gap. The future skill should explicitly address supplied-video inspection, separation of scroll-scrub and triggered-playback modes, bounded generation retries, confidence-gated moving-subject overlays, and a sole rAF-loop architecture.

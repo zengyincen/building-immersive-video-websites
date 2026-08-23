@@ -43,13 +43,10 @@ The installer refuses to overwrite an existing destination. Use `--dry-run` to i
 
 ## Atoms, Base44, Lovable, Replit, Bolt, v0, and other builders
 
-These platforms do not share a universal native `SKILL.md` interface. Import [compatibility/builder-prompt.md](compatibility/builder-prompt.md) into the builder's project instructions or prompt surface, and add [compatibility/project-agents-snippet.md](compatibility/project-agents-snippet.md) when persistent project guidance is supported.
-
 For a single copy-paste prompt, use the English [Universal Builder Prompt](compatibility/universal-builder-prompt.en-US.md). It combines project audit, real image-to-video capability discovery, supplied-video bypass, scroll/video modes, pseudo-3D, mouse tracking, eye overlays, fallbacks, and browser verification in one prompt.
 
 中文版单段 Prompt 见 [Universal Builder Prompt — 中文版](compatibility/universal-builder-prompt.zh-CN.md)，内容与英文版保持同一套能力路由和交互约束。
 
-[compatibility/installation-map.md](compatibility/installation-map.md) distinguishes native skill installation from compatibility import for every supported platform class.
 
 ## Usage examples
 

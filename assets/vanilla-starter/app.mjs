@@ -114,8 +114,9 @@ function installLocalMedia(manifest) {
     });
   }
   const media = Array.isArray(manifest?.media) ? manifest.media : [];
-  const item = media.find(({src, background, role}) =>
-    typeof src === 'string' && src.startsWith('./') && background !== true && role !== 'persistent-background-video');
+  const item = media.find(({src, background, role, intermediate, segment}) =>
+    typeof src === 'string' && src.startsWith('./') && background !== true && role !== 'persistent-background-video'
+      && intermediate !== true && segment !== true && !String(role || '').includes('bridge'));
   if (!item) {
     if (backgroundItem) status.textContent = 'Your next perspective is ready.';
     return;

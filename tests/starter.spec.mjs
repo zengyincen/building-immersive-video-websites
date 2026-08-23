@@ -54,6 +54,7 @@ test('a master manifest mounts one background video and ignores bridge players',
         media: [
           {src: './media/image-01-to-image-02.mp4', background: true, role: 'bridge-intermediate'},
           {src: './media/image-02-to-image-03.mp4', background: true, role: 'bridge-intermediate'},
+          {src: './media/image-03-to-image-04.mp4', background: false, role: 'bridge-intermediate'},
         ],
       }),
     });

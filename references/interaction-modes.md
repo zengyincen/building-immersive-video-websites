@@ -34,6 +34,12 @@ motion coherent.
   brand/year, legal links, and other non-topic information belong outside the
   scene wrapper in normal document flow.
 
+- **Persistent ambient background:** The assembled master film is one mounted,
+  muted, inline video that plays continuously or loops as an atmospheric layer.
+  Scene progress changes the foreground and masks; it does not switch the film
+  or create per-chapter players. Only an explicit frame-accurate scroll request
+  may seek this same mounted element.
+
 - **Scroll scrub:** Convert the section's clamped scroll progress to a clamped
   media time with `timeForProgress`. The frame loop seeks only when the desired
   time meaningfully differs from the current time.

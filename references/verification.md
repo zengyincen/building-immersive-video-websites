@@ -7,6 +7,10 @@ Record the browser/device, route, media source, and any unavailable test.
 
 - Confirm every video decodes and reaches metadata (`loadedmetadata` or an
   equivalent state); compare duration and dimensions with the media manifest.
+- For an ordered image sequence, confirm assembly produced one durable
+  `master-background-film` and that the page mounts at most one background
+  `<video>`. Bridge files are intermediate inputs, not additional topical
+  players or section-level background sources.
 - Confirm each manifest path is durable and project-local or otherwise stable
   after reload; no temporary preview or expired generation URL may be required.
 - For generated media, retain generation evidence: selected capability,
@@ -20,9 +24,11 @@ Record the browser/device, route, media source, and any unavailable test.
   one continuous progress value, reverse scroll restores the prior state, and
   the sticky scene releases only before footer/non-topic content.
 - For an ordered image sequence, confirm each adjacent segment honors its
-  supplied first and last image, the handoff is visually continuous, and the
-  source order is preserved. Record any host limitation when exact endpoint
-  control is unavailable; do not invent a successful transition.
+  supplied first and last image, the handoff is visually continuous inside the
+  master film, and the source order is preserved. Inspect frames around every
+  assembly boundary for black frames, hard cuts, or jumps. Record any host
+  limitation when exact endpoint control is unavailable; do not invent a
+  successful transition.
 
 - Scroll scrub: test forward and reverse scroll, both section bounds, clamped
   seeking, and ordinary page scrolling outside the section.
@@ -44,6 +50,9 @@ Record the browser/device, route, media source, and any unavailable test.
   retaining a deliberate static state and direct controls.
 - Reload and inspect the browser console; resolve relevant errors, failed media
   requests, and unhandled promise rejections.
+- Confirm the footer, address, brand/year, and legal material appears only after
+  the final topical scene hold; it must not release because an intermediate
+  bridge ended.
 - Recheck existing routes, entry points, and behaviors identified in the initial
   audit so the immersive change does not regress the host project.
 - If a capability, device, browser, asset, or test is unavailable, state what

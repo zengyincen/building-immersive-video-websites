@@ -26,8 +26,19 @@ Atoms, Base44, Lovable, Replit, Bolt, and v0.
 > limitation when the capability cannot guarantee it. Do not bypass mandatory
 > host safety or authorization checks.
 >
-> Select one mode per media state and keep them distinct: scroll scrub, mouse
-> scrub, or triggered playback. Implement mouse-reactive followers, highlights,
+> Treat each generated bridge as intermediate media. Before implementing the
+> page, normalize the ordered bridges and crossfade them into one durable
+> `master-background-film.mp4` (use `scripts/assemble-master-video.py` or an
+> equivalent verified ffmpeg pipeline). The final page must mount exactly one
+> background video; never make one background player/section per source image.
+> Emit an assembly manifest with source order, bridge endpoints, boundaries,
+> transition duration, output metadata, and decode verification. If assembly
+> cannot run, keep a poster/fallback and report the exact limitation rather than
+> presenting disconnected clips as a continuous film.
+>
+> Select one mode per media state and keep them distinct: persistent ambient
+> background, scroll scrub, mouse scrub, or triggered playback. Implement
+> mouse-reactive followers, highlights,
 > semantic hotspots, and eye tracking when requested. Give eye tracking fixed
 > normalized anchors or time-keyframed moving anchors; reset pointers and pupils
 > on leave and hidden-page transitions. Make hotspot actions reachable by tap

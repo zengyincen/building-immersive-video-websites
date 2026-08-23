@@ -20,6 +20,11 @@ For an ordered image sequence, search specifically for documented start-frame /
 end-frame, first-frame / last-frame, reference-frame, or image-sequence input.
 Use the capability's actual contract; never claim exact endpoint continuity when
 the host does not expose a matching input path.
+After generation, treat those adjacent outputs as bridge assets and assemble
+them into one durable master background film before building the page. The page
+must not use one generated clip per image or per scroll chapter; use
+`scripts/assemble-master-video.py` (or a verified equivalent) and retain its
+assembly manifest.
 
 ## Input inspection boundary
 

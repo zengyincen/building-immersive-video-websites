@@ -39,3 +39,30 @@ test('topic content uses one persistent background scene layer', async ({page}) 
     [...main.children].map((child) => child.getAttribute('data-scene-background') !== null ? 'background' : child.getAttribute('data-scene-foreground') !== null ? 'foreground' : 'other'));
   expect(sceneOrder.slice(0, 2)).toEqual(['background', 'foreground']);
 });
+
+test('a master manifest mounts one background video and ignores bridge players', async ({page}) => {
+  await page.route('**/media-manifest.json', async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        masterBackgroundVideo: {
+          src: './media/master-background-film.mp4',
+          role: 'persistent-background-video',
+          background: true,
+          interaction: 'persistent-ambient-background',
+        },
+        media: [
+          {src: './media/image-01-to-image-02.mp4', background: true, role: 'bridge-intermediate'},
+          {src: './media/image-02-to-image-03.mp4', background: true, role: 'bridge-intermediate'},
+        ],
+      }),
+    });
+  });
+  await page.route('**/media/master-background-film.mp4', async (route) => {
+    await route.fulfill({status: 200, contentType: 'video/mp4', body: Buffer.alloc(0)});
+  });
+  await page.goto('/');
+  await expect(page.locator('[data-scene-background] video')).toHaveCount(1);
+  await expect(page.locator('[data-scene-background] video')).toHaveAttribute('data-master-background', 'true');
+  await expect(page.locator('[data-media-stage] video')).toHaveCount(0);
+});

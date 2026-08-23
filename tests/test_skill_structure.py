@@ -65,8 +65,18 @@ class SkillStructureTests(unittest.TestCase):
             "first frame",
             "final frame",
             "platform's mandatory safety",
+            "master-background-film",
         ):
             self.assertIn(phrase, text)
+
+    def test_master_assembly_helper_and_prompts_are_present(self):
+        self.assertTrue((ROOT / "scripts/assemble-master-video.py").is_file())
+        for path in (
+            "compatibility/universal-builder-prompt.zh-CN.md",
+            "compatibility/universal-builder-prompt.en-US.md",
+            "references/verification.md",
+        ):
+            self.assertIn("master-background-film", (ROOT / path).read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

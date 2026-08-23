@@ -38,6 +38,34 @@ Use this reference only when generating or optimizing video. A supplied video sk
   for the render is enough; do not add a rights or unrelated-image-information
   analysis to the workflow.
 
+## Master background film assembly (mandatory for image sequences)
+
+- The final web deliverable is one continuous `master-background-film.mp4` (or
+  an equivalent single durable video file), not one web video per source image.
+  `image-01.mp4`, `image-02.mp4`, and similar bridge files are intermediate
+  generation assets only and must never become separate chapter players.
+- Build the film from the ordered bridges in sequence. Every adjacent handoff
+  must be a real overlap/bridge (`image-01 → image-02`, then
+  `image-02 → image-03`, and so on) with a deliberate crossfade or equivalent
+  continuous transition. Do not concatenate unrelated clips with a hard cut.
+- When the host can generate only one bridge at a time, first persist all bridge
+  files, then normalize them to a common width, height, aspect ratio, frame rate,
+  pixel format, and time base. Assemble them with `scripts/assemble-master-video.py`
+  or an equivalent verified ffmpeg pipeline. The script must fail clearly when
+  ffmpeg/ffprobe, a bridge, or required metadata is unavailable; never fabricate
+  a master file from a job-complete message or temporary URL.
+- Write an assembly manifest containing the ordered sources, each bridge's
+  `from`/`to` IDs, transition duration, output path, segment boundaries, codec,
+  duration, dimensions, and frame rate. Verify the exported master decodes and
+  inspect frames around each boundary for black frames, jumps, or hard cuts.
+- Mount only the master file in the page's persistent background layer. The
+  foreground scene may crossfade masks, copy, chapter cards, hotspots, or
+  supporting media from one normalized scene progress value, but it must not
+  replace, unload, or reload the background video at chapter boundaries.
+- If an environment cannot produce or assemble a single master film, report the
+  exact limitation and keep a static poster/fallback. Do not ship a page that
+  presents independent bridge videos as if they were one continuous background.
+
 ## Shot-plan contract
 
 Write a short plan before generation: identify the subject and its immutable visual traits, setting, horizontal aspect ratio, intended duration, camera move, first frame, final frame, and the moment of greatest depth. The plan must name a single continuous move and keep the subject readable throughout.

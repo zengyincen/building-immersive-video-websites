@@ -16,10 +16,12 @@ to an existing site, a replacement, or an assembly of existing pieces? Record th
 answer and hand off a media manifest containing each source asset, its role,
 generation/job metadata when applicable, and its durable local path.
 
-Choose exactly one interaction mode for each media state: scroll-scrubbed video
-(scroll progress controls time), mouse-scrubbed video (pointer position controls
-time), or triggered playback (an event starts or pauses normal playback). Keep
-these three modes distinct; do not combine their controls on the same media state.
+Choose exactly one interaction mode for each media state: persistent ambient
+background (the master film plays/loops independently while scene progress drives
+the foreground), scroll-scrubbed video (scroll progress controls time),
+mouse-scrubbed video (pointer position controls time), or triggered playback (an
+event starts or pauses normal playback). Keep these modes distinct; do not
+combine their controls on the same media state.
 
 For media generation or shot refinement, use [video direction](references/video-direction.md).
 For scheduler discipline, followers, hotspots, eye tracking, touch behavior, and
@@ -29,6 +31,12 @@ art direction, media loading, and progressive enhancement, use the
 For ordered still-image transitions, read the [video direction](references/video-direction.md)
 input boundary and adjacent image-to-image transition contract; do not add a
 copyright or unrelated-image-information audit to the generation path.
+For multiple supplied images, the final site must use one assembled master
+background film. Persist each adjacent bridge as intermediate media, then run
+[`scripts/assemble-master-video.py`](scripts/assemble-master-video.py) (or a
+verified equivalent) to normalize and crossfade the sequence before wiring the
+page. Never create one background player per image or treat a job-complete
+message as a usable master file.
 When the background film must remain behind a long scroll story, use the
 [persistent background scene](references/persistent-background-scene.md)
 contract for the sticky scene shell, foreground chapters, reversible progress,

@@ -40,6 +40,8 @@ B. When only images are supplied:
 - Generation is successful only after the video is downloaded to a persistent project path, decodes in a browser, and is recorded in the media manifest. A completion signal or temporary preview URL alone is not success.
 - Default direction: a horizontal, single-shot, 8–12 second luxury fly-through using a slow dolly-in, gentle orbit, crane, or foreground parallax. Preserve the subject silhouette, materials, colors, proportions, typography, logos, architecture, and lighting direction. Prohibit abrupt cuts, morphing, new limbs/objects, text artifacts, and unmotivated camera changes.
 - Keep camera direction, lens feel, lighting direction, subject identity, and depth progression coherent across adjacent segments. The last frame of one segment must be a stable starting state for the next; no blank frames, random inserts, hard cuts, unrelated objects, or identity drift. With one image, create subtle motion that settles back to the same image for a seamless loop.
+- **Mandatory master-film assembly:** do not create one web video section per image, and do not mount `image-01.mp4`, `image-02.mp4`, or other bridge files as separate chapter players. Bridge files are intermediate generation assets only. Normalize every bridge to one width, height, aspect ratio, frame rate, pixel format, and time base, then assemble the ordered sequence with a real crossfade or equivalent continuous transition into one durable `master-background-film.mp4` (or equivalent single master file). Prefer the project helper `scripts/assemble-master-video.py`; if the builder exposes only native media tools, run an equivalent verified assembly workflow.
+- The assembly must emit a manifest containing ordered sources, each bridge's `from`/`to`, transition duration, output path, segment boundaries, codec, duration, dimensions, and frame rate. Confirm the master decodes with ffprobe/browser and inspect every boundary for black frames, jumps, or hard cuts. If ffmpeg/ffprobe, a bridge, or required metadata is unavailable, fail clearly and keep the poster/fallback; never treat a job-complete message or temporary URL as a master video.
 - Write a short shot plan first: subject lock, environment lock, camera move, first frame, deepest moment, final frame, and mobile-safe crop.
 - Allow at most one targeted corrective retry. The retry must address a diagnosed failure from the first output; stop and report the problem if the retry also fails.
 - If no suitable real image-to-video capability is available, stop the generation path, list the capability categories searched and what is missing, and use the source image as a static poster/fallback. Never pretend a video was generated.
@@ -47,7 +49,7 @@ B. When only images are supplied:
 [3. PAGE COMPOSITION]
 Unless the supplied narrative requires another order, build:
 1. Hero: image reveal or static poster, short headline, supporting line, and an explicit CTA.
-2. Main video timeline: a pinned/fixed video stage whose scroll progress maps to the corresponding video interval.
+2. Main immersive scene: one pinned/fixed master background film whose scroll progress drives the foreground scene; do not switch video time per chapter unless frame-accurate sync is explicitly requested.
 3. Pseudo-3D showcase: video, foreground, midground, background, type, and light layers create CSS/DOM 2.5D depth.
 4. Mouse-interaction scene: followers, magnetic controls, highlights, semantic hotspots, video-plane response, and/or character eyes following the cursor.
 5. Triggered scene: an independent transition/finale video activated by click, Enter, Space, tap, or one deliberate gesture.
@@ -55,6 +57,7 @@ Unless the supplied narrative requires another order, build:
 
 [4. PERSISTENT BACKGROUND SCENE]
 - Build one long topical `immersive-scene` wrapper. Keep one full-bleed background video mounted behind it for the entire topical story; do not unmount, replace, or reload it at each chapter.
+- The finished page may mount only one `master-background-film` background video element. The number of source images/bridges belongs in generation and assembly manifests, never in multiple background players or per-section background playback.
 - Put masks, foreground copy, chapter cards, side metadata, hotspots, and supporting media in a separate foreground layer above the video. Scroll should normally change these foreground layers, not the background video's mount or source.
 - Derive all chapter states from one clamped scene progress `p` with overlapping ranges. Crossfade and transform neighboring chapters from `p` so scrolling upward exactly reverses scrolling downward; never use one-way timers or irreversible next-step state.
 - Keep the background video muted/inline and continuously playing or looping when it is an ambient film. Only if the user explicitly requests frame-accurate scroll sync may `p` seek the same fixed, mounted video.
@@ -62,8 +65,9 @@ Unless the supplied narrative requires another order, build:
 - If a reference URL is supplied, use this persistent-scene pattern only as interaction inspiration. Do not copy its brand, wording, portraits, logos, or proprietary assets.
 
 [5. VIDEO AND SCROLL CONTRACT]
-- Label every media state with exactly one interaction mode: scroll-scrub, mouse-scrub, or triggered-playback.
-- The default main video is scroll-scrubbed: keep it paused, clamp the section progress from entry to exit, and map it to [startTime, endTime]. Scrolling down advances; scrolling up reverses; normal page scrolling remains available outside the section.
+- Label every media state with exactly one interaction mode: persistent-ambient-background, scroll-scrub, mouse-scrub, or triggered-playback. The single master background film uses persistent-ambient-background by default.
+- Keep the master background film muted, inline, and continuously playing or looping; scrolling changes foreground masks, copy, chapter cards, and supporting media, never the background video's mount, source, or per-section playback. Only an explicit frame-accurate scroll-sync request may seek this same fixed video from clamped scene progress.
+- Use scroll-scrub only for another media state that genuinely needs frame-accurate control: keep that video paused, clamp section progress from entry to exit, and map it to [startTime, endTime]. Scrolling down advances; scrolling up reverses; normal page scrolling remains available outside the section.
 - If entering a section should autoplay a complete clip, make that a separate triggered-playback video/media state. Do not let the same video receive both scroll-based currentTime writes and play() control.
 - Use mouse-scrub only when pointer position is intentionally meant to control media time. Do not hijack horizontal touch movement on coarse or touch-only devices.
 - Wait for loadedmetadata before reading duration or seeking. Clamp all times and update currentTime only when the desired time meaningfully changes.

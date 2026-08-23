@@ -6,9 +6,13 @@ The skill uses an existing video directly. When only images are supplied, it dis
 
 ## What it builds
 
-- Scroll-scrubbed, mouse-scrubbed, or gesture-triggered video states
+- Persistent ambient background films plus distinct scroll-scrubbed,
+  mouse-scrubbed, or gesture-triggered media states
 - Persistent full-bleed background scenes with reversible foreground chapters and footer release
 - Ordered still-image-to-still-image transitions with locked start/end frames
+- One assembled `master-background-film.mp4` for every ordered image story;
+  bridge clips remain intermediate assets and are never mounted as per-section
+  background players
 - Mouse followers, parallax, highlights, magnetic elements, hotspots, and time-keyframed eye tracking
 - CSS/DOM 2.5D scenes with a restrained Apple-inspired luxury visual language
 - Touch, keyboard, responsive, and `prefers-reduced-motion` fallbacks
@@ -81,6 +85,35 @@ Inspect a video:
 
 ```bash
 python3 scripts/inspect-media.py /absolute/path/to/video.mp4
+```
+
+Assemble adjacent image-to-image bridges into the single background film used
+by the website:
+
+```bash
+python3 scripts/assemble-master-video.py bridges-manifest.json \
+  --output public/media/master-background-film.mp4 \
+  --output-manifest public/media/master-background-film.manifest.json
+```
+
+The input JSON must contain `orderedSources` and exactly one local `segments`
+entry for each adjacent pair. The helper normalizes dimensions/frame rate,
+crossfades the bridges, verifies the output with `ffprobe`, and fails clearly
+when a segment or required tool is missing. Wire only the generated
+`masterBackgroundVideo.src` into the persistent scene layer.
+
+Minimal input shape:
+
+```json
+{
+  "orderedSources": [{"id": "image-01"}, {"id": "image-02"}],
+  "segments": [{
+    "id": "bridge-01",
+    "from": "image-01",
+    "to": "image-02",
+    "src": "segments/image-01-to-image-02.mp4"
+  }]
+}
 ```
 
 ## Tests

@@ -10,6 +10,10 @@ masks, copy, cards, and metadata change over it.
   `scene-background` layer mounted for the whole wrapper, usually `position:
   sticky`/fixed and full-bleed. Do not unmount, replace, or reload the video at
   every chapter.
+- When the story came from multiple images, the mounted source is the single
+  assembled master background film. Individual image-to-image bridges belong in
+  generation storage and the assembly manifest only; they are never separate
+  background players or per-chapter sections.
 - Put all changing copy, masks, media cards, hotspot panels, chapter counters,
   and contrast scrims in a separate `scene-foreground` layer above the video.
 - Keep persistent navigation and small status UI anchored to the scene frame;
@@ -59,6 +63,9 @@ masks, copy, cards, and metadata change over it.
 
 - The background video remains mounted and visually behind every topical
   chapter.
+- Exactly one master background video element is mounted for the topical scene;
+  adjacent source images are represented by continuous bridge boundaries inside
+  that file rather than by separate web sections.
 - Forward and reverse scroll traverse the same states without drift or jumps.
 - Foreground masks, text, and media change independently of the background
   layer, unless explicit frame-sync was requested.

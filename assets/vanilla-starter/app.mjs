@@ -7,6 +7,7 @@ const hotspot = document.querySelector('[data-hotspot]');
 const hotspotDetail = document.querySelector('[data-hotspot-detail]');
 const stage = document.querySelector('[data-media-stage]');
 const sceneBackground = document.querySelector('[data-scene-background]');
+const sceneShell = document.querySelector('[data-immersive-scene]');
 const status = document.querySelector('[role="status"]');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const hasFineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -39,8 +40,10 @@ function clearPointerTarget() {
 }
 
 function updateScrollTarget() {
-  const extent = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-  state.scrollProgress = clamp(window.scrollY / extent);
+  const rect = sceneShell?.getBoundingClientRect();
+  const extent = Math.max(1, (sceneShell?.offsetHeight || document.documentElement.scrollHeight) - window.innerHeight);
+  const offset = rect ? -rect.top : window.scrollY;
+  state.scrollProgress = clamp(offset / extent);
 }
 
 function renderFrame(now) {
@@ -54,6 +57,7 @@ function renderFrame(now) {
   scene.style.setProperty('--reveal-y', `${y * 100}%`);
   scene.style.setProperty('--tilt-x', `${(y - .5) * -5}deg`);
   scene.style.setProperty('--tilt-y', `${(x - .5) * 5}deg`);
+  root.style.setProperty('--scene-progress', state.scrollProgress.toFixed(5));
   follower.dataset.active = String(state.active && hasFineHover);
   const anchors = interpolateEyeTrack(eyeTrack, timeForProgress(state.scrollProgress, 0));
   const offset = anchors ? pupilOffset(anchors.left, state.renderedPointer, anchors.radius) : [0, 0];
@@ -88,12 +92,15 @@ function cancelTriggeredPlayback(section, video) {
   video.pause();
 }
 
-function installLocalMedia(media) {
-  const backgroundItem = media.find(({src, background, role}) =>
-    typeof src === 'string' && src.startsWith('./') && (background === true || role === 'persistent-background-video'));
+function installLocalMedia(manifest) {
+  const candidateBackground = manifest?.masterBackgroundVideo;
+  const backgroundItem = candidateBackground && typeof candidateBackground.src === 'string' && candidateBackground.src.startsWith('./')
+    ? candidateBackground
+    : null;
   if (backgroundItem && sceneBackground) {
     const backgroundVideo = document.createElement('video');
     backgroundVideo.className = 'scene-background-video';
+    backgroundVideo.dataset.masterBackground = 'true';
     backgroundVideo.autoplay = true;
     backgroundVideo.loop = true;
     backgroundVideo.muted = true;
@@ -106,6 +113,7 @@ function installLocalMedia(media) {
       status.textContent = 'Tap to continue exploring.';
     });
   }
+  const media = Array.isArray(manifest?.media) ? manifest.media : [];
   const item = media.find(({src, background, role}) =>
     typeof src === 'string' && src.startsWith('./') && background !== true && role !== 'persistent-background-video');
   if (!item) {
@@ -129,7 +137,7 @@ async function loadManifest() {
   try {
     const response = await fetch('./media-manifest.json');
     const manifest = await response.json();
-    installLocalMedia(Array.isArray(manifest.media) ? manifest.media : []);
+    installLocalMedia(manifest);
   } catch {
     status.textContent = 'The still image remains available to explore.';
   }

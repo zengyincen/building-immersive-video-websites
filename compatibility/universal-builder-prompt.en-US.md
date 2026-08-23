@@ -72,13 +72,19 @@ Unless the supplied narrative requires another order, build:
 - Show a reliable poster/static fallback first. Preload video metadata, warm media shortly before it enters the viewport, and release it when far outside view. An empty or failed manifest must never create a blank/broken player.
 - Reuse the host project's fonts and components; if none are specified, use a system sans-serif stack.
 
-[7. MOBILE, ACCESSIBILITY, AND FALLBACKS]
+[7. VISITOR-FACING COPY — MAKE IT A REAL WEBSITE]
+- The visitor must experience a finished commercial, portfolio, editorial, or personal website, never a demo, starter, test harness, or implementation showcase.
+- Do not render internal terms or diagnostics in visible copy, including “Play it straight through”, “scroll-scrub”, “triggered-playback”, “requestAnimationFrame”, “media manifest”, “job ID”, “starter”, “test”, provider names, generation status, or missing-asset errors.
+- Do not instruct visitors how the animation is implemented. If a direct control is useful, use natural contextual language such as “Explore the collection”, “Discover the residence”, “View the work”, “Read the story”, “Watch the film”, or “Tap to explore”. Keep technical evidence in developer-only logs and the final report.
+- When media is unavailable, preserve the designed poster and use a brand-appropriate message such as “A new perspective is ready to explore”, never “No media has been assigned” or “manifest unavailable”.
+
+[8. MOBILE, ACCESSIBILITY, AND FALLBACKS]
 - On narrow, touch, and coarse/non-hover devices, preserve ordinary page scrolling. CTAs, hotspots, playback, and information must remain tappable and keyboard reachable; nothing may depend on hover.
 - Add visible focus-visible states, ARIA labels/roles where needed, useful alt text, semantic landmarks, and plain-language control states.
 - Honor prefers-reduced-motion: remove continuous parallax, followers, eye tracking, and decorative easing while retaining an intentional static poster/first frame and direct controls.
 - If browser autoplay is blocked, fail gracefully with a muted poster and an explicit play control; do not break the page.
 
-[8. VERIFICATION AND DELIVERY]
+[9. VERIFICATION AND DELIVERY]
 Verify the implemented page in the real browser/preview environment available on the current platform:
 1. Every video decodes, reaches loadedmetadata, and matches the manifest's duration and dimensions.
 2. Main-video scroll scrub works forward, reverse, and at both bounds; time is clamped and ordinary scrolling is not trapped outside the section.

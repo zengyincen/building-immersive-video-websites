@@ -20,6 +20,12 @@ test('reduced motion exposes a static experience', async ({browser}) => {
 
 test('an empty media manifest keeps the hero in its designed static fallback', async ({page}) => {
   await page.goto('/');
-  await expect(page.getByRole('status')).toContainText('No media has been assigned yet');
+  await expect(page.getByRole('status')).toContainText('A new perspective is ready to explore');
   await expect(page.locator('[data-media-stage] video')).toHaveCount(0);
+});
+
+test('visitor copy does not expose implementation or demo language', async ({page}) => {
+  await page.goto('/');
+  const bodyText = await page.locator('body').innerText();
+  expect(bodyText).not.toMatch(/Play it straight through|No media has been assigned|Vanilla immersive starter|media manifest|scroll-scrub|triggered-playback/i);
 });

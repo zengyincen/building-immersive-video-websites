@@ -29,6 +29,13 @@ Atoms, Base44, Lovable, Replit, Bolt, and v0.
 > media writes. Add touch/mobile and `prefers-reduced-motion` fallbacks that
 > keep controls and information usable without hover or continuous motion.
 >
+> Treat the result as a normal finished commercial, portfolio, editorial, or
+> personal website. Never expose implementation or demo language such as
+> “Play it straight through”, `scroll-scrub`, `triggered-playback`,
+> `requestAnimationFrame`, “media manifest”, “job ID”, “starter”, or “test” in
+> visitor-facing copy. Use contextual brand CTAs and plain-language states;
+> keep technical diagnostics and generation evidence out of the page.
+>
 > Verify in a browser, including loaded durable media, the chosen interaction,
 > completion of triggered playback, pointer reset, moving-eye anchors, mobile,
 > reduced motion, console errors, and regression of existing behavior. Report

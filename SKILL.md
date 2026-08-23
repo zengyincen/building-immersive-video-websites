@@ -39,6 +39,13 @@ claim that every platform supports native `SKILL.md` installation.
 For a single copy-paste request, use the [universal English Builder Prompt](compatibility/universal-builder-prompt.en-US.md).
 For Chinese-language projects, use the [universal Chinese Builder Prompt](compatibility/universal-builder-prompt.zh-CN.md).
 
+Keep visitor-facing copy separate from implementation language. Generated pages
+must read like normal commercial, portfolio, editorial, or personal websites:
+never expose demo/starter wording, test instructions, tool names, media-manifest
+fields, job IDs, scheduler terms, or phrases such as “Play it straight through”.
+Use contextual brand CTAs and status messages instead; keep technical evidence in
+the final report or developer-only metadata.
+
 Before delivery, verify the assembled page in a browser: assets load from their durable paths, the selected interaction works without trapped scroll, a touch fallback works, responsive and reduced-motion behavior remain usable, and the console has no relevant errors.
 Follow the complete [browser verification checklist](references/verification.md)
 and report any unavailable capability or unverified check honestly.

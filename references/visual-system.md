@@ -8,6 +8,19 @@ This starter takes cues from premium industrial design: a dark, sparse stage, hi
 - Prefer a system sans stack, modest all-caps metadata, and large, tightly tracked display text. Keep body copy short and comfortably line-spaced.
 - Set spacing with `clamp()` tokens, hairline separators, and a small number of breakpoints. The mobile composition may change, but it should retain the same focal hierarchy.
 
+## Visitor-facing language
+
+- Treat the result as a finished commercial, portfolio, editorial, or personal
+  website—not a demo or implementation showcase.
+- Never render internal terms such as `scroll-scrub`, `triggered-playback`,
+  `requestAnimationFrame`, `media manifest`, `job ID`, `starter`, `test`, or
+  “Play it straight through”. Do not expose provider names, generation status,
+  missing-asset diagnostics, or developer instructions in the page copy.
+- Replace technical states with useful context: “Explore the collection”,
+  “Discover the residence”, “View the work”, “Read the story”, “Tap to explore”,
+  or an equivalent phrase that matches the brand and language. Keep generation
+  evidence and failure details in developer-only logs or the final report.
+
 ## Rendering and media
 
 The default is CSS/DOM 2.5D: layered gradients, pseudo-elements, perspective, and transform-only motion. Upgrade to WebGL only after it provides a measured visual benefit that CSS cannot deliver, and retain the static CSS poster as the baseline. Scope visual state to each scene with data attributes and CSS custom properties; avoid global selectors that can leak between embeds.

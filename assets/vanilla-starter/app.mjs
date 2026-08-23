@@ -75,7 +75,7 @@ function requestTriggeredPlayback(section, video) {
   }
   const {signal} = playback.controller;
   video.play().catch(() => {
-    if (!signal.aborted) status.textContent = 'Playback needs a direct user gesture on this device.';
+    if (!signal.aborted) status.textContent = 'Tap to continue exploring.';
   });
 }
 
@@ -100,7 +100,7 @@ function installLocalMedia(media) {
   video.addEventListener('pointerenter', () => requestTriggeredPlayback(scene, video), {passive: true});
   video.addEventListener('pointerleave', () => cancelTriggeredPlayback(scene, video), {passive: true});
   stage.prepend(video);
-  status.textContent = 'Local media is ready. Hover to preview or use native controls.';
+  status.textContent = 'Your next perspective is ready.';
 }
 
 async function loadManifest() {
@@ -109,7 +109,7 @@ async function loadManifest() {
     const manifest = await response.json();
     installLocalMedia(Array.isArray(manifest.media) ? manifest.media : []);
   } catch {
-    status.textContent = 'Media manifest unavailable. The static poster remains available.';
+    status.textContent = 'The still image remains available to explore.';
   }
 }
 

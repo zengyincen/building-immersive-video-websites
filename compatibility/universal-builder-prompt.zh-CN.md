@@ -72,13 +72,19 @@ B. 如果只有图片：
 - 首屏先显示可靠 poster/静态 fallback；视频 metadata 预加载，接近视口时再预热媒体，远离视口后释放资源。manifest 为空或视频失败时不能出现空白/破损播放器。
 - 复用当前项目的字体和组件；没有指定时使用系统 sans-serif 字体栈。
 
-【七、移动端、可访问性和降级】
+【七、访客可见文案：必须像正常网站】
+- 访客看到的必须是完成度高的商业网站、个人网站、作品集或内容网站，不能像 demo、starter、测试页面或实现说明。
+- 禁止在页面可见文案中出现“Play it straight through”、scroll-scrub、triggered-playback、requestAnimationFrame、media manifest、job ID、starter、test、供应商名称、生成状态、缺少素材诊断等内部术语或错误信息。
+- 不要向访客解释动画如何实现。需要直接操作时使用符合品牌语境的文案，例如“探索系列”“发现这处空间”“查看作品”“阅读故事”“观看影片”“继续探索”；技术证据只放在开发日志和最终报告中。
+- 媒体不可用时保留设计好的 poster，并使用“新的视角，等待探索”这类正常品牌提示，禁止显示“No media has been assigned”“manifest unavailable”等开发者文案。
+
+【八、移动端、可访问性和降级】
 - 在窄屏、触摸和 coarse/non-hover 设备上保持正常页面滚动；所有 CTA、热点、播放和信息都必须可点击、可键盘访问，不依赖 hover。
 - 添加清晰的 focus-visible 样式、ARIA/alt 文本、语义 landmarks 和状态标签。
 - 遵守 prefers-reduced-motion：停止连续 parallax、follower、眼睛追踪和装饰性缓动，保留有意设计的静态 poster/首帧以及直接控制。
 - 自动播放被浏览器阻止时，不报错中断页面；提供静音、poster 和明确的播放按钮。
 
-【八、验证和最终交付】
+【九、验证和最终交付】
 实现后必须在当前平台可用的真实浏览器/预览环境中验证：
 1. 每个视频都能解码并触发 loadedmetadata，和 media-manifest 的时长/尺寸一致。
 2. 主视频滚动向前、向后、到两端时正确映射并 clamp；区块外页面不被锁死。

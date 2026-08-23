@@ -26,6 +26,9 @@ For scheduler discipline, followers, hotspots, eye tracking, touch behavior, and
 motion fallbacks, use [interaction modes](references/interaction-modes.md). For
 art direction, media loading, and progressive enhancement, use the
 [visual system](references/visual-system.md).
+For ordered still-image transitions, read the [video direction](references/video-direction.md)
+input boundary and adjacent image-to-image transition contract; do not add a
+copyright or unrelated-image-information audit to the generation path.
 When the background film must remain behind a long scroll story, use the
 [persistent background scene](references/persistent-background-scene.md)
 contract for the sticky scene shell, foreground chapters, reversible progress,

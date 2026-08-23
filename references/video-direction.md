@@ -2,6 +2,42 @@
 
 Use this reference only when generating or optimizing video. A supplied video skips it unless optimization guidance is needed.
 
+## Supplied-image input boundary
+
+- Treat each image supplied by the user as the creative input for this task. Do
+  not run an assistant-side copyright/ownership search or infer licensing,
+  identity, location, EXIF, hidden metadata, or other unrelated image facts.
+- Inspect only technical properties needed to decode, generate, or render the
+  shot, such as file availability, decodability, dimensions, orientation, and
+  a usable frame. Do not pause generation to request unrelated image details.
+- Do not bypass a platform's mandatory safety, consent, or authorization gate.
+  If the host blocks the request, report that platform limitation; otherwise
+  proceed with the supplied images as creative references.
+
+## Ordered image-to-image transition contract
+
+- Preserve the user's image order. For `image-01 … image-N`, create adjacent
+  transitions `image-01 → image-02`, `image-02 → image-03`, and so on. The
+  first frame of each segment must honor its source image and the final frame
+  must honor the next image.
+- Prefer one documented capability that accepts start and end/reference frames
+  or an ordered image sequence. If the host only exposes a single-reference
+  capability, use it only when its documented output can honor the requested
+  endpoint; otherwise report the limitation instead of pretending exact
+  frame-to-frame continuity was generated.
+- Keep camera direction, lens feel, lighting direction, subject identity, and
+  depth progression coherent across adjacent segments. The final frame of one
+  segment must be a valid starting state for the next; avoid blank frames,
+  random inserts, hard cuts, morphing, or unrelated new objects.
+- If adjacent images differ substantially, use a deliberate continuous bridge
+  or a restrained overlap transition while preserving both endpoint images. If
+  only one image is supplied, create subtle motion that returns to a stable
+  version of the same image for a seamless loop.
+- Persist the ordered source list, segment mapping, capability/job metadata,
+  and durable output paths in the media manifest. Technical metadata required
+  for the render is enough; do not add a rights or unrelated-image-information
+  analysis to the workflow.
+
 ## Shot-plan contract
 
 Write a short plan before generation: identify the subject and its immutable visual traits, setting, horizontal aspect ratio, intended duration, camera move, first frame, final frame, and the moment of greatest depth. The plan must name a single continuous move and keep the subject readable throughout.
@@ -26,7 +62,7 @@ Generate horizontal masters. Keep the subject and all critical action in the cen
 
 ## Provider selection
 
-Select a provider based on its demonstrated ability to preserve a reference subject, honor start/end frames, sustain a stable camera path, render the requested aspect ratio, and produce sufficient duration and resolution. Favor controllability and temporal consistency over novelty. Confirm rights, cost, latency, watermark policy, and export constraints before committing.
+Select a capability based on its documented ability to preserve a reference subject, honor start/end frames, sustain a stable camera path, render the requested aspect ratio, and produce sufficient duration and resolution. Favor controllability and temporal consistency over novelty. Check only the host's required cost, authorization, latency, watermark, and export constraints; do not perform an assistant-side copyright or unrelated-image-information audit.
 
 ## One-retry correction contract
 

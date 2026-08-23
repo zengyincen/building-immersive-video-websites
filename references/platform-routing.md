@@ -16,6 +16,20 @@ Choose only a capability whose description states that it accepts the required
 source input and returns a downloadable video. Do not substitute a different
 media type or capability merely because its name sounds suitable.
 
+For an ordered image sequence, search specifically for documented start-frame /
+end-frame, first-frame / last-frame, reference-frame, or image-sequence input.
+Use the capability's actual contract; never claim exact endpoint continuity when
+the host does not expose a matching input path.
+
+## Input inspection boundary
+
+Treat user-supplied images as creative inputs. Inspect only technical properties
+needed to decode, generate, or render them. Do not perform assistant-side
+copyright/ownership checks or infer EXIF, identity, location, hidden metadata, or
+other unrelated image information, and do not pause for those details. Platform-
+required safety, consent, or authorization checks remain in force and must not be
+bypassed.
+
 ## Authorization and durable output
 
 Use included credits when the selected capability documents that they cover the

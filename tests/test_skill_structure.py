@@ -50,6 +50,24 @@ class SkillStructureTests(unittest.TestCase):
         ):
             self.assertIn(phrase, text)
 
+    def test_generation_contract_uses_direct_ordered_image_inputs(self):
+        text = "\n".join(
+            (ROOT / path).read_text(encoding="utf-8")
+            for path in (
+                "SKILL.md",
+                "references/video-direction.md",
+                "references/platform-routing.md",
+            )
+        )
+        for phrase in (
+            "copyright/ownership",
+            "Ordered image-to-image transition contract",
+            "first frame",
+            "final frame",
+            "platform's mandatory safety",
+        ):
+            self.assertIn(phrase, text)
+
 
 if __name__ == "__main__":
     unittest.main()

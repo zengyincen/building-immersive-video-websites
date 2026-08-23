@@ -17,6 +17,15 @@ Atoms, Base44, Lovable, Replit, Bolt, and v0.
 > result and its job/request metadata. Do not guess tool names or claim
 > generation from a completion signal alone.
 >
+> Treat supplied images as creative inputs. Inspect only technical properties
+> needed to decode, render, or generate. Do not perform an assistant-side
+> copyright/ownership, EXIF, identity, location, or unrelated-image-information
+> audit. Preserve image order and generate adjacent start-frame-to-end-frame
+> transitions with the host's documented first/last-frame or image-sequence
+> capability; keep endpoint continuity honest and report only a platform
+> limitation when the capability cannot guarantee it. Do not bypass mandatory
+> host safety or authorization checks.
+>
 > Select one mode per media state and keep them distinct: scroll scrub, mouse
 > scrub, or triggered playback. Implement mouse-reactive followers, highlights,
 > semantic hotspots, and eye tracking when requested. Give eye tracking fixed

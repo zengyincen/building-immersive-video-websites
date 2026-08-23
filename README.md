@@ -8,6 +8,7 @@ The skill uses an existing video directly. When only images are supplied, it dis
 
 - Scroll-scrubbed, mouse-scrubbed, or gesture-triggered video states
 - Persistent full-bleed background scenes with reversible foreground chapters and footer release
+- Ordered still-image-to-still-image transitions with locked start/end frames
 - Mouse followers, parallax, highlights, magnetic elements, hotspots, and time-keyframed eye tracking
 - CSS/DOM 2.5D scenes with a restrained Apple-inspired luxury visual language
 - Touch, keyboard, responsive, and `prefers-reduced-motion` fallbacks

@@ -19,6 +19,10 @@ Record the browser/device, route, media source, and any unavailable test.
   mounted behind every topical chapter, foreground masks/text/media change from
   one continuous progress value, reverse scroll restores the prior state, and
   the sticky scene releases only before footer/non-topic content.
+- For an ordered image sequence, confirm each adjacent segment honors its
+  supplied first and last image, the handoff is visually continuous, and the
+  source order is preserved. Record any host limitation when exact endpoint
+  control is unavailable; do not invent a successful transition.
 
 - Scroll scrub: test forward and reverse scroll, both section bounds, clamped
   seeking, and ordinary page scrolling outside the section.

@@ -36,6 +36,7 @@ builder without native skill discovery, use the self-contained
 [project-agent snippet](compatibility/project-agents-snippet.md), and the
 [installation map](compatibility/installation-map.md). These are imports, not a
 claim that every platform supports native `SKILL.md` installation.
+For a single copy-paste request, use the [universal English Builder Prompt](compatibility/universal-builder-prompt.en-US.md).
 
 Before delivery, verify the assembled page in a browser: assets load from their durable paths, the selected interaction works without trapped scroll, a touch fallback works, responsive and reduced-motion behavior remain usable, and the console has no relevant errors.
 Follow the complete [browser verification checklist](references/verification.md)

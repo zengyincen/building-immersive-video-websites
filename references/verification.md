@@ -15,6 +15,11 @@ Record the browser/device, route, media source, and any unavailable test.
 
 ## Interaction acceptance
 
+- For a persistent background scene, confirm the same background video remains
+  mounted behind every topical chapter, foreground masks/text/media change from
+  one continuous progress value, reverse scroll restores the prior state, and
+  the sticky scene releases only before footer/non-topic content.
+
 - Scroll scrub: test forward and reverse scroll, both section bounds, clamped
   seeking, and ordinary page scrolling outside the section.
 - Mouse scrub: test both horizontal directions on fine pointer input and ensure

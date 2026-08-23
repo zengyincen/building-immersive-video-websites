@@ -26,6 +26,10 @@ For scheduler discipline, followers, hotspots, eye tracking, touch behavior, and
 motion fallbacks, use [interaction modes](references/interaction-modes.md). For
 art direction, media loading, and progressive enhancement, use the
 [visual system](references/visual-system.md).
+When the background film must remain behind a long scroll story, use the
+[persistent background scene](references/persistent-background-scene.md)
+contract for the sticky scene shell, foreground chapters, reversible progress,
+and footer release.
 
 Use [platform routing](references/platform-routing.md) whenever a static image
 needs motion generation, a capability must be selected, authorization or async

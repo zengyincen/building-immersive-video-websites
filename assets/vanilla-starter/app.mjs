@@ -6,6 +6,7 @@ const follower = document.querySelector('[data-pointer-follower]');
 const hotspot = document.querySelector('[data-hotspot]');
 const hotspotDetail = document.querySelector('[data-hotspot-detail]');
 const stage = document.querySelector('[data-media-stage]');
+const sceneBackground = document.querySelector('[data-scene-background]');
 const status = document.querySelector('[role="status"]');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const hasFineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -88,8 +89,29 @@ function cancelTriggeredPlayback(section, video) {
 }
 
 function installLocalMedia(media) {
-  const item = media.find(({src}) => typeof src === 'string' && src.startsWith('./'));
-  if (!item) return;
+  const backgroundItem = media.find(({src, background, role}) =>
+    typeof src === 'string' && src.startsWith('./') && (background === true || role === 'persistent-background-video'));
+  if (backgroundItem && sceneBackground) {
+    const backgroundVideo = document.createElement('video');
+    backgroundVideo.className = 'scene-background-video';
+    backgroundVideo.autoplay = true;
+    backgroundVideo.loop = true;
+    backgroundVideo.muted = true;
+    backgroundVideo.playsInline = true;
+    backgroundVideo.preload = 'metadata';
+    backgroundVideo.poster = backgroundItem.poster || '';
+    backgroundVideo.src = backgroundItem.src;
+    sceneBackground.append(backgroundVideo);
+    backgroundVideo.play().catch(() => {
+      status.textContent = 'Tap to continue exploring.';
+    });
+  }
+  const item = media.find(({src, background, role}) =>
+    typeof src === 'string' && src.startsWith('./') && background !== true && role !== 'persistent-background-video');
+  if (!item) {
+    if (backgroundItem) status.textContent = 'Your next perspective is ready.';
+    return;
+  }
   const video = document.createElement('video');
   video.controls = true;
   video.muted = true;

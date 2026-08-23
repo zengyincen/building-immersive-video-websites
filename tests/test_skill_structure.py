@@ -9,6 +9,7 @@ REQUIRED = {
     "references/platform-routing.md",
     "references/video-direction.md",
     "references/interaction-modes.md",
+    "references/persistent-background-scene.md",
     "references/visual-system.md",
     "references/verification.md",
     "compatibility/builder-prompt.md",
@@ -45,6 +46,7 @@ class SkillStructureTests(unittest.TestCase):
             "triggered playback",
             "touch fallback",
             "responsive and reduced-motion",
+            "persistent background scene",
         ):
             self.assertIn(phrase, text)
 

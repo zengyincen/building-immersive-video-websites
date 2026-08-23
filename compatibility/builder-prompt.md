@@ -29,6 +29,14 @@ Atoms, Base44, Lovable, Replit, Bolt, and v0.
 > media writes. Add touch/mobile and `prefers-reduced-motion` fallbacks that
 > keep controls and information usable without hover or continuous motion.
 >
+> When the experience has a long scroll story, keep one full-bleed background
+> video mounted behind the entire topical scene. Drive foreground masks, text,
+> chapter cards, and metadata from one continuous reversible scene progress;
+> scroll up must undo scroll down. Release the sticky scene only before the
+> footer/address/year and other non-topic content. Do not swap or reset the
+> background video between chapters unless the user explicitly requests a new
+> scene.
+>
 > Treat the result as a normal finished commercial, portfolio, editorial, or
 > personal website. Never expose implementation or demo language such as
 > “Play it straight through”, `scroll-scrub`, `triggered-playback`,

@@ -22,6 +22,18 @@ motion coherent.
 
 ## Media response
 
+### Persistent background scene
+
+- Keep one full-bleed background video mounted behind the entire topical scene;
+  scroll should normally update foreground chapter progress, masks, text, and
+  media cards rather than swapping or resetting the background element.
+- Compute one clamped, continuous scene progress and derive every chapter from
+  it. Overlap chapter ranges and interpolate both directions so reverse scroll
+  is the exact inverse of forward scroll.
+- Release the sticky scene only after the final topic chapter. Footer, address,
+  brand/year, legal links, and other non-topic information belong outside the
+  scene wrapper in normal document flow.
+
 - **Scroll scrub:** Convert the section's clamped scroll progress to a clamped
   media time with `timeForProgress`. The frame loop seeks only when the desired
   time meaningfully differs from the current time.
